@@ -1,0 +1,17 @@
+minikube start --driver=docker
+-> before starting
+
+kubectl port-forward svc/ubuntu-novnc-instance1 8081:6080
+kubectl port-forward svc/ubuntu-novnc-instance2 8082:6080
+kubectl port-forward svc/ubuntu-novnc-instance3 8083:6080
+
+-> webUI: localhost:808{instance-number}/vnc.html
+
+kubectl get pods
+-> for id of pod
+
+kubectl exec -it ubuntu-novnc-{instance-id} -- bash
+-> individual access for terminals directly
+
+mysecretpassword
+-> vnc password

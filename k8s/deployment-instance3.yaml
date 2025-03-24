@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-novnc-instance3
+  labels:
+    app: ubuntu-novnc-instance3
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ubuntu-novnc-instance3
+  template:
+    metadata:
+      labels:
+        app: ubuntu-novnc-instance3
+    spec:
+      volumes:
+        - name: desktop-storage
+          persistentVolumeClaim:
+            claimName: desktop-pvc-instance3
+      containers:
+      - name: ubuntu-novnc
+        image: ubuntu-novnc:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 6080
+        volumeMounts:
+          - mountPath: /root/Desktop
+            name: desktop-storage
+
